@@ -19,7 +19,7 @@
             this.rad = rad;
         }
 
-        public  double GetSquare()
+        public double GetSquare()
         {
             return Math.Pow(rad, 2) * Math.PI;
         }
@@ -38,6 +38,14 @@
             this.c = c;
         }
 
+        public bool IsRectang() => ((a * a + b * b == c * c) || (b * b + c * c == a * a) || (a * a + c * c == b * b));
+
+        public double GetSquare()
+        {
+            double halfPerim = (a + b + c) / 2;
+            return Math.Sqrt(halfPerim * (halfPerim - a) * (halfPerim - b) * (halfPerim - c));
+        }
+
         private void CanBeTriangle(double a, double b, double c)
         {
             if (a <= 0 || b <= 0 || c <= 0)
@@ -50,12 +58,5 @@
                 throw new ArgumentException("There is no such triangle with these sides");
             }
         }
-        public bool IsRectang() => ((a * a + b * b == c * c) || (b * b + c * c == a * a) || (a * a + c * c == b * b));
-
-        public double GetSquare()
-        {
-                double halfP = (a + b + c) / 2;
-                return Math.Sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
-            } 
     }
 }
